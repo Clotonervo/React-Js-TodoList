@@ -5,6 +5,7 @@ import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 const LOCAL_STORAGE_KEY = "react-todo-list-todos"
+// https://www.youtube.com/watch?v=nUl5QLkVdvU
 
 function App() {
   const [todos, setTodos] = useState([]);
