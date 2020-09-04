@@ -9,14 +9,13 @@ const LOCAL_STORAGE_KEY = "react-todo-list-todos"
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
 
   useEffect(() => {
     window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
 
   useEffect(() => {
-    const storageTodos = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEY));
-    console.log(JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEY)))
     if(storageTodos){
       setTodos(storageTodos);
     }
@@ -24,6 +23,24 @@ function App() {
 
   function addTodo(todo) {
     setTodos([todo, ...todos]);
+  }
+
+  function toggleComplete(id) {
+    setTodos (
+      todos.map(todo => {
+        if (todo.id === id){
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+        return todo;
+      })
+    );
+  }
+
+  function removeTodo(id) {
+    setTodos(todos.filter(todo => todo.id !== id));
   }
 
 
@@ -35,7 +52,7 @@ function App() {
           React Todo
         </p>
         <TodoForm addTodo={addTodo} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo}/>
           Learn React
       </header>
     </div>
