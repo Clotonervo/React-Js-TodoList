@@ -53,7 +53,6 @@ function App() {
         </Typography>
         <TodoForm addTodo={addTodo} />
         <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo}/>
-          Learn React
     </div>
   );
 }
