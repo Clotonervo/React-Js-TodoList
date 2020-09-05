@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import uuid from "uuid";
+import {Textfield, Button, TextField} from "@material-ui/core";
 
 function TodoForm({ addTodo }) {
  const [todo, setTodo] = useState({
@@ -21,14 +22,15 @@ function TodoForm({ addTodo }) {
  }
 
  return (
-     <form onSubmit={handleSubmit}>
-         <input
+     <form className="todo-form" onSubmit={handleSubmit}>
+         <TextField
+         label= "Insert Todo Task"
          name = "task"
          type = "text"
          value = {todo.task}
          onChange = {handlTaskInputChange}
          />
-         <button type="submit">submit</button>
+         <Button type="submit">submit</Button>
      </form>
  );
 }
